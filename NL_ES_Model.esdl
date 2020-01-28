@@ -1,9 +1,14 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <esdl:EnergySystem xmlns:esdl="http://www.tno.nl/esdl" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="Energy System, The Netherlands" xmi:version="2.0">
+  <energySystemInformation xsi:type="esdl:EnergySystemInformation" id="1ff5633b-90f0-4f98-80ed-accf6d45fb5e">
+    <carriers xsi:type="esdl:Carriers" id="308f70fa-4e6d-4833-9733-73702bce3a7f">
+      <carrier xsi:type="esdl:ElectricityCommodity" name="Electricity"/>
+    </carriers>
+  </energySystemInformation>
   <instance xsi:type="esdl:Instance" name="NL" aggrType="PER_COMMODITY">
     <area xsi:type="esdl:Area" name="Municipality area">
-      <asset xsi:type="esdl:PVParc" name="PV park" commissioningDate="2020-01-23T14:42:25.367587">
-        <port xsi:type="esdl:OutPort" connectedTo="InPort_ED" id="Out_Port_PV_Park">
+      <asset xsi:type="esdl:PVPark" name="PV park" commissioningDate="2020-01-27T15:43:10.801480">
+        <port xsi:type="esdl:OutPort" connectedTo="InPort_ENW" id="Out_Port_PV_Park" carrier="//@energySystemInformation/@carriers/@carrier.0">
           <profile xsi:type="esdl:DateTimeProfile">
             <element xsi:type="esdl:ProfileElement" from="2015-01-01T00:00:00.000000" to="2015-01-01T01:00:00.000000"/>
             <element xsi:type="esdl:ProfileElement" from="2015-01-01T01:00:00.000000" to="2015-01-01T02:00:00.000000"/>
@@ -33,7 +38,7 @@
         </port>
       </asset>
       <asset xsi:type="esdl:ElectricityDemand" name="Municipality">
-        <port xsi:type="esdl:InPort" connectedTo="Out_Port_PV_Park" id="InPort_ED">
+        <port xsi:type="esdl:InPort" connectedTo="OutPort_ENW" id="InPort_ED" carrier="//@energySystemInformation/@carriers/@carrier.0">
           <profile xsi:type="esdl:DateTimeProfile">
             <element xsi:type="esdl:ProfileElement" from="2015-01-01T00:00:00.000000" to="2015-01-01T00:15:00.000000" value="81.0376"/>
             <element xsi:type="esdl:ProfileElement" from="2015-01-01T00:15:00.000000" to="2015-01-01T00:30:00.000000" value="78.7234"/>
@@ -134,12 +139,10 @@
           </profile>
         </port>
       </asset>
-      <asset xsi:type="esdl:ElectricityNetwork" name="Electricity Network"/>
+      <asset xsi:type="esdl:ElectricityNetwork" name="Electricity Network">
+        <port xsi:type="esdl:InPort" connectedTo="Out_Port_PV_Park" id="InPort_ENW" carrier="//@energySystemInformation/@carriers/@carrier.0"/>
+        <port xsi:type="esdl:OutPort" connectedTo="InPort_ED" id="OutPort_ENW" carrier="//@energySystemInformation/@carriers/@carrier.0"/>
+      </asset>
     </area>
   </instance>
-  <energySystemInformation xsi:type="esdl:EnergySystemInformation" id="c29e6084-2498-420b-a2f4-7ec39b981913">
-    <carriers xsi:type="esdl:Carriers" id="c269e3c1-7c7f-4699-bd1e-bb9abd80e264">
-      <carrier xsi:type="esdl:ElectricityCommodity" name="Electricity"/>
-    </carriers>
-  </energySystemInformation>
 </esdl:EnergySystem>
