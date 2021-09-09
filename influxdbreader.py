@@ -8,7 +8,7 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # Returns an InfluxDB object of the typical demand profile from Energy Data Repository
 # The ID is passed to query the InfluxDB (see read_yearly_demand_profile_data(year) method)
 def get_influx_db_demand_profile():
-    return edrreader.get_item_from_EDR('5c10df35-2b34-444a-b501-b41cf95dd4d7')
+    return edrreader.get_item_from_EDR('a184cf10-6ffd-440c-b6a9-f15dd852eb15')
 
 
 # Queries the Energy Data Repository's https://edr.hesi.energy/api/ site to get an InfluxDB object of solar production  profiles
